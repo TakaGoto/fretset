@@ -3,5 +3,5 @@
             [fretset.core :refer :all]))
 
 (describe "a test"
-  (it "FIXME, I fail."
-    (should= 0 1)))
+  (it "is true"
+    (should= 1 1)))
