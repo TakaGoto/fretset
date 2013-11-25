@@ -1,0 +1,6 @@
+[:html
+  [:head]
+  [:body
+    (eval (:template-body joodo.views/*view-context*))
+  ]
+]

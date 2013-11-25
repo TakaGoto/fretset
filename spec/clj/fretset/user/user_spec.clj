@@ -1,0 +1,57 @@
+(ns fretset.user.user-spec
+  (:require [speclj.core :refer :all]
+            [fretset.user.user :refer :all]
+            [hyperion.api :refer [save find-by-key]]
+            [hyperion.dev.spec-helper :refer [with-memory-datastore]]
+            ))
+
+(describe "User"
+  (with-memory-datastore)
+  (with valid-user
+    {:full-name "George"
+     :email "george@fakeemail.com"
+     :password "george1" :password-confirmation "george1"})
+
+  (it "saves the user"
+    (let [george (save (user @valid-user))
+          result (find-by-key (:key george))]
+      (should= (:full-name @valid-user) (:full-name result))
+      (should= (:email @valid-user) (:email result))
+      (should= (:password @valid-user) (:password result))
+      (should-not= nil (:created-at result))
+      (should-not= nil (:updated-at result))))
+
+  (context "validations"
+    (it "validates user name exists"
+      (let [errors (validate-user (dissoc @valid-user :full-name))]
+        (should= 1 (count (:full-name errors)))
+        (should= ["Please input your full name"] (:full-name errors))))
+
+    (it "validates email exist"
+      (let [errors (validate-user (dissoc @valid-user :email))]
+        (should-contain "Please input your email" (:email errors))))
+
+    (it "validates password exists"
+      (let [errors (validate-user (dissoc @valid-user :password :password-confirmation))]
+        (should-contain "Please input your password" (:password errors))))
+
+    (it "validates password-confirmation exists"
+      (let [errors (validate-user (dissoc @valid-user :password-confirmation))]
+        (should-contain "Please input your password confirmation" (:password-confirmation errors))))
+
+    (it "validates proper formatting for email"
+      (let [errors (validate-user (assoc @valid-user :email "not-valid-email"))]
+        (should= 1 (count (:email errors)))
+        (should= ["Please input a correct email format"] (:email errors))))
+
+    (it "validates password is the same as password confirmation"
+      (let [errors (validate-user (assoc @valid-user :password-confirmation "not-matching-password"))]
+        (should= 1 (count (:password errors)))
+        (should= ["Password and password confirmation don't match"] (:password errors))))
+
+    (it "validates password length is at least 6"
+      (let [errors (validate-user (assoc @valid-user :password-confirmation "i"
+                                         :password "i"))]
+        (should= 1 (count (:password errors)))
+        (should= ["must have length greater than or equal to 6"] (:password errors))))))
+
