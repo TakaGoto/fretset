@@ -1,1 +1,18 @@
-[:h1 "sign up page"]
+[:div
+  (list
+    [:form {:action "/user/signup" :method "post"}
+      [:small "Full Name"]
+      [:input {:type "text" :name "full-name"}]
+      [:small "Email"]
+      [:input {:type "text" :name "email"}]
+      [:small "Password"]
+      [:input {:type "text" :name "password"}]
+      [:small "Password Confirmation"]
+      [:input {:type "text" :name "password-confirmation"}]
+
+      [:div
+        [:input {:type "submit" :value "Create Account"}]
+      ]
+    ]
+  )
+]
