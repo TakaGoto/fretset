@@ -4,6 +4,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.6"]
                  [digest "1.4.3"]
+                 [garden "1.1.4"]
                  [hiccups "0.2.0"]
                  [hyperion/hyperion-mongo "3.6.0"]
                  [joodo "2.0.0"]

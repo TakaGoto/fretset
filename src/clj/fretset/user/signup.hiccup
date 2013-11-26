@@ -1,4 +1,4 @@
-[:div
+[:div {:class "testing"}
   (list
     [:form {:action "/user/signup" :method "post"}
       [:small "Full Name"]
