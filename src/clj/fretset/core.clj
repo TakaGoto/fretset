@@ -32,4 +32,4 @@
 (defn -main [& args]
   (load-configurations)
   (setup-data-store)
-  (run-jetty app {:port 3000}))
+  (run-jetty app {:port 4040}))

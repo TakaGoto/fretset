@@ -1,19 +1,25 @@
 (ns fretset.user.user
   (:require [hyperion.api :refer [defentity]]
-            [metis.core :refer [defvalidator]]))
+            [metis.core :refer [defvalidator]]
+            [digest :refer [sha-256]]))
 
-(def email-regex
+(def email-validation-regex
   #"(?i)[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+
+(def salt "Fretset not Jetset!")
 
 (defn- validate-email-format [user field options]
   (when-not
     (re-matches
-      email-regex (or (field user) ""))
+      email-validation-regex (or (field user) ""))
     "Please input a correct email format"))
 
 (defn- confirm-matching-password [user field options]
   (when-not (= (field user) (:password-confirmation user))
     "Password and password confirmation don't match"))
+
+(defn ->digest [password]
+  (sha-256 (str salt password)))
 
 (defvalidator validate-user
   [[:full-name]              :presence {:message "Please input your full name"}]
@@ -29,6 +35,6 @@
 (defentity User
   [full-name]
   [email]
-  [password]
+  [password :packer ->digest]
   [created-at]
   [updated-at])

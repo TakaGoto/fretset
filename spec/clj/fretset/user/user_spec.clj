@@ -1,9 +1,9 @@
 (ns fretset.user.user-spec
   (:require [speclj.core :refer :all]
+            [digest :refer [sha-256]]
             [fretset.user.user :refer :all]
             [hyperion.api :refer [save find-by-key]]
-            [hyperion.dev.spec-helper :refer [with-memory-datastore]]
-            ))
+            [hyperion.dev.spec-helper :refer [with-memory-datastore]]))
 
 (describe "User"
   (with-memory-datastore)
@@ -17,9 +17,14 @@
           result (find-by-key (:key george))]
       (should= (:full-name @valid-user) (:full-name result))
       (should= (:email @valid-user) (:email result))
-      (should= (:password @valid-user) (:password result))
       (should-not= nil (:created-at result))
       (should-not= nil (:updated-at result))))
+
+  (it "digests the password for security"
+    (let [george (save (user @valid-user))
+          result (find-by-key (:key george))
+          digested-password (sha-256 (str "Fretset not Jetset!" (:password @valid-user)))]
+      (should= digested-password (:password result))))
 
   (context "validations"
     (it "validates user name exists"
