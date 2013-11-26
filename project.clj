@@ -11,6 +11,7 @@
 
   :profiles {
     :dev {
+      :main fretset.core
       :dependencies [[speclj "2.8.0"]]}}
 
   :repl-options {:init-ns fretset.repl

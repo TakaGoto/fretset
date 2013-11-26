@@ -22,5 +22,4 @@
   (context "user"
     (it "has user controller"
       (let [result (do-get "/user/signup")]
-        (should= 200 (:status result)))))
-  )
+        (should= 200 (:status result))))))
