@@ -1,10 +1,12 @@
 (ns fretset.core-spec
   (:require [speclj.core :refer :all]
             [fretset.core :refer :all]
+            [hyperion.dev.spec-helper :refer [with-memory-datastore]]
             [joodo.spec-helpers.controller :refer [do-get with-routes
                                                    with-mock-rendering]]))
 
 (describe "route"
+  (with-memory-datastore)
   (with-routes app-routes)
   (with-mock-rendering)
 

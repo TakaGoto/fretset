@@ -13,17 +13,33 @@
   (with-routes user-controller)
   (with-mock-rendering)
 
+  (with valid-user
+    {:full-name "George"
+     :email "george@fakeemail.com"
+     :password "george1" :password-confirmation "george1"})
+
   (context "sign up"
     (it "return a 200"
-      (let [result (do-get "/signup")]
-        (should= 200 (:status result)))
+      (let [response (do-get "/signup")]
+        (should= 200 (:status response)))
         (should= "user/signup" @rendered-template))
 
     (it "creates an account through signup form"
       (let [params {:full-name "George" :email "george@fakeemail.com" :password "george1" :password-confirmation "george1"}
-            result (do-post "/signup" :params params)
+            response (do-post "/signup" :params params)
             new-user (first (find-by-kind :user))]
-        (should-redirect-to result "/")
+        (should-redirect-to response "/")
         (should= "George" (:full-name new-user))
-        (should-not-be-nil (:key new-user))))))
+        (should-not-be-nil (:key new-user))))
+
+    (it "does not create an account if information is incorrect"
+      (let [response (do-post "/signup" :params (dissoc @valid-user :email))
+            new-user (find-by-kind :user)]
+        (should= 0 (count new-user))))
+
+    (it "returns with a flash error response when account information is invalid"
+      (let [response (do-post "/signup" :params (dissoc @valid-user :email))
+            new-user (find-by-kind :user)]
+        (should (:errors (:flash response))))
+      )))
 

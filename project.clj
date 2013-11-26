@@ -13,6 +13,9 @@
     :dev {
       :dependencies [[speclj "2.8.0"]]}}
 
+  :repl-options {:init-ns fretset.repl
+                 :init (do (clojure.core/require 'fretset.repl) (fretset.repl/init))}
+
   :plugins [[speclj "2.8.0"]
             [lein-ring "0.8.8"]]
 
