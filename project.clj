@@ -7,8 +7,7 @@
                  [hiccups "0.2.0"]
                  [hyperion/hyperion-mongo "3.6.0"]
                  [metis "0.3.3"]
-                 [ring/ring-jetty-adapter "1.2.0"]
-                 ]
+                 [ring/ring-jetty-adapter "1.2.0"]]
 
   :profiles {
     :dev {
@@ -16,7 +15,6 @@
 
   :plugins [[speclj "2.8.0"]
             [lein-ring "0.8.8"]]
-
 
   :test-paths ["spec/clj"]
   :source-paths ["src/clj"]
