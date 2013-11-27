@@ -1,8 +1,8 @@
 (ns fretset.user.user-controller
-  (:require [compojure.core :refer :all]
-            [joodo.views :refer [render-template]]
-            [hyperion.api :refer [save]]
-            [fretset.user.user :refer [user validate-user]]
+  (:require [compojure.core     :refer :all]
+            [joodo.views        :refer [render-template]]
+            [hyperion.api       :refer [save]]
+            [fretset.user.user  :refer [user validate-user]]
             [ring.util.response :refer [redirect]]))
 
 (defn- create-user [params]

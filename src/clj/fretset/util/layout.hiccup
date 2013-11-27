@@ -13,7 +13,7 @@
       [:nav
         [:ul
           [:li
-            [:a {:href "/user/signup"} "Create Account"]]]]]]
+            [:a {:href "/user/signup"} "Sign Up"]]]]]]
 
   [:body
     (eval (:template-body joodo.views/*view-context*))]]

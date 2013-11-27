@@ -14,9 +14,11 @@ header {
   padding: 0.5em 0;
   background: #fff;
   margin-bottom: 3em;
-}div.container {
+}
+
+div.container {
   max-width: 960px;
-  width: 90%;
+  width: 80%;
   position: relative;
   margin: 0 auto;
 }
@@ -32,9 +34,7 @@ div.container:before, div.container:after {
 
 div.container:after {
   clear: both;
-}
-
-a.logo {
+}a.logo {
   overflow: hidden;
   padding: 0.5em 0;
   float: left;
@@ -48,7 +48,6 @@ nav {
 
 nav ul {
   overflow: hidden;
-  margin: 0.5em 0 0 0;
 }
 
 nav li {
@@ -79,4 +78,58 @@ nav li {
     margin-left: 0;
   }
 
+}div.form-header {
+  text-align: center;
+}
+
+div.user-registration-form {
+  max-width: 500px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 2em;
+}
+
+div.user-registration-form {
+*zoom: 1;
+}
+
+div.user-registration-form:before, div.user-registration-form:after {
+  content: "";
+  display: table;
+}
+
+div.user-registration-form:after {
+  clear: both;
+}
+
+div.user-registration-form input.button {
+  margin: 1em;
+}
+
+div.form-field label {
+  text-align: left;
+  margin-top: 0.5em;
+  width: 100%;
+  float: left;
+  margin-bottom: 0.2em;
+}
+
+div.form-field input {
+  line-height: 1.5em;
+  padding: 0.5em;
+  width: 100%;
+  border: 1px solid #DDD;
+}
+
+div.first-column {
+  width: 45%;
+  float: left;
+  margin: 0;
+}
+
+div.second-column {
+  width: 45%;
+  float: right;
+  margin: 0;
 }

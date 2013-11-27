@@ -1,8 +1,8 @@
 (ns fretset.user.user-controller-spec
-  (:require [speclj.core :refer :all]
-            [fretset.user.user-controller :refer :all]
-            [hyperion.api :refer [find-by-kind]]
-            [hyperion.dev.spec-helper :refer [with-memory-datastore]]
+  (:require [speclj.core                   :refer :all]
+            [fretset.user.user-controller  :refer :all]
+            [hyperion.api                  :refer [find-by-kind]]
+            [hyperion.dev.spec-helper      :refer [with-memory-datastore]]
             [joodo.spec-helpers.controller :refer [with-mock-rendering
                                                    with-routes do-get do-post
                                                    rendered-template
@@ -14,7 +14,8 @@
   (with-mock-rendering)
 
   (with valid-user
-    {:full-name "George"
+    {:first-name "George"
+     :last-name "Tucker"
      :email "george@fakeemail.com"
      :password "george1" :password-confirmation "george1"})
 
@@ -25,11 +26,11 @@
         (should= "user/signup" @rendered-template))
 
     (it "creates an account through signup form"
-      (let [params {:full-name "George" :email "george@fakeemail.com" :password "george1" :password-confirmation "george1"}
+      (let [params @valid-user
             response (do-post "/signup" :params params)
             new-user (first (find-by-kind :user))]
         (should-redirect-to response "/")
-        (should= "George" (:full-name new-user))
+        (should= "George" (:first-name new-user))
         (should-not-be-nil (:key new-user))))
 
     (it "does not create an account if information is incorrect"
@@ -40,6 +41,5 @@
     (it "returns with a flash error response when account information is invalid"
       (let [response (do-post "/signup" :params (dissoc @valid-user :email))
             new-user (find-by-kind :user)]
-        (should (:errors (:flash response))))
-      )))
+        (should (:errors (:flash response)))))))
 

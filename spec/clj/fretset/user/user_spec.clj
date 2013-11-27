@@ -1,21 +1,22 @@
 (ns fretset.user.user-spec
-  (:require [speclj.core :refer :all]
-            [digest :refer [sha-256]]
-            [fretset.user.user :refer :all]
-            [hyperion.api :refer [save find-by-key]]
+  (:require [speclj.core              :refer :all]
+            [digest                   :refer [sha-256]]
+            [fretset.user.user        :refer :all]
+            [hyperion.api             :refer [save find-by-key]]
             [hyperion.dev.spec-helper :refer [with-memory-datastore]]))
 
 (describe "User"
   (with-memory-datastore)
   (with valid-user
-    {:full-name "George"
+    {:first-name "George"
+     :last-name "Tucker"
      :email "george@fakeemail.com"
      :password "george1" :password-confirmation "george1"})
 
   (it "saves the user"
     (let [george (save (user @valid-user))
           result (find-by-key (:key george))]
-      (should= (:full-name @valid-user) (:full-name result))
+      (should= (:first-name @valid-user) (:first-name result))
       (should= (:email @valid-user) (:email result))
       (should-not= nil (:created-at result))
       (should-not= nil (:updated-at result))))
@@ -27,10 +28,15 @@
       (should= digested-password (:password result))))
 
   (context "validations"
-    (it "validates user name exists"
-      (let [errors (validate-user (dissoc @valid-user :full-name))]
-        (should= 1 (count (:full-name errors)))
-        (should= ["Please input your full name"] (:full-name errors))))
+    (it "validates first name exists"
+      (let [errors (validate-user (dissoc @valid-user :first-name))]
+        (should= 1 (count (:first-name errors)))
+        (should= ["Please input your first name"] (:first-name errors))))
+
+    (it "validates last name exists"
+      (let [errors (validate-user (dissoc @valid-user :last-name))]
+        (should= 1 (count (:last-name errors)))
+        (should= ["Please input your last name"] (:last-name errors))))
 
     (it "validates email exist"
       (let [errors (validate-user (dissoc @valid-user :email))]
@@ -46,7 +52,6 @@
 
     (it "validates proper formatting for email"
       (let [errors (validate-user (assoc @valid-user :email "not-valid-email"))]
-        (should= 1 (count (:email errors)))
         (should= ["Please input a correct email format"] (:email errors))))
 
     (it "validates password is the same as password confirmation"

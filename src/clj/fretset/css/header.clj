@@ -1,16 +1,11 @@
 (ns fretset.css.header
-  (:require [garden.core :refer [css]]
+  (:require [garden.core       :refer [css]]
             [garden.stylesheet :refer [at-media]]
-            [garden.units :refer [px]]
-            [fretset.css.util :refer [clearfix]]))
+            [garden.units      :refer [px]]
+            [fretset.css.util  :refer [clearfix]]))
 
 (defn header []
   (css
-
-    [:div.container
-     clearfix
-     {:max-width "960px"   :margin "0 auto"
-      :position "relative" :width "90%"}]
 
     [:a.logo
      {:display "block"        :float "left"
@@ -19,21 +14,19 @@
     [:nav {:overflow "hidden"
            :width "100%"}
 
-     [:ul {:margin "0.5em 0 0 0"
-           :overflow "hidden"}]
+     [:ul {:overflow "hidden"}]
 
-     [:li {:list-style "none"
-           :border-top "1px solid #eee"
-           :text-align "center"
+     [:li {:border-top "1px solid #eee"
+           :list-style "none"
+           :line-height "2em"
            :margin-bottom "0"
-           :line-height "2em"}]]
+           :text-align "center"}]]
 
     (at-media {:screen true :min-width (px 640)}
               [:nav {:float "right"
-                     :width "auto"
-                     :height "auto"}
+                     :height "auto"
+                     :width "auto"}
                [:ul
                 :margin-top "0"]
-               [:li {:float "left" :border "0"
-                     :margin-left "1.5em"}
+               [:li {:border "0" :float "left" :margin-left "1.5em"}
                 ["&:first-child" {:margin-left "0"}]]])))

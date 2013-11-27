@@ -1,5 +1,6 @@
 (ns fretset.css.global
-  (:require [garden.core :refer [css]]))
+  (:require [garden.core     :refer [css]]
+            [fretset.css.util :refer [clearfix]]))
 
 (defn global []
   (css
@@ -13,4 +14,9 @@
               :background "#fff"
               :overflow "hidden"
               :margin-bottom "3em"
-              :padding "0.5em 0"}]))
+              :padding "0.5em 0"}]
+
+    [:div.container
+     clearfix
+     {:max-width "960px"   :margin "0 auto"
+      :position "relative" :width "80%"}]))

@@ -1,18 +1,29 @@
-[:div {:class "testing"}
-  (list
-    [:form {:action "/user/signup" :method "post"}
-      [:small "Full Name"]
-      [:input {:type "text" :name "full-name"}]
-      [:small "Email"]
-      [:input {:type "text" :name "email"}]
-      [:small "Password"]
-      [:input {:type "text" :name "password"}]
-      [:small "Password Confirmation"]
-      [:input {:type "text" :name "password-confirmation"}]
+[:div.container
+  [:div.form-header
+    [:h1 "Create your Account"]]
 
-      [:div
-        [:input {:type "submit" :value "Create Account"}]
-      ]
-    ]
-  )
-]
+  [:div.user-registration-form
+    [:form {:action "/user/signup" :method "post"}
+      [:div.form-field
+        [:div.first-column
+          [:label "First Name"]
+          [:input {:type "text" :name "first-name"}]]]
+
+      [:div.form-field
+        [:div.second-column
+          [:label "Last Name"]
+          [:input {:type "text" :name "last-name"}]]]
+
+      [:div.form-field
+        [:label "Email"]
+        [:input {:type "text" :name "email"}]]
+
+      [:div.form-field
+        [:label "Password"]
+        [:input {:type "password" :name "full-name"}]]
+
+      [:div.form-field
+        [:label "Password Confirmation"]
+        [:input {:type "password" :name "full-name"}]]
+
+        [:input.button {:type "submit" :value "Create Account"}]]]]

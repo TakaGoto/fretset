@@ -1,7 +1,7 @@
 (ns fretset.user.user
   (:require [hyperion.api :refer [defentity]]
-            [metis.core :refer [defvalidator]]
-            [digest :refer [sha-256]]))
+            [metis.core   :refer [defvalidator]]
+            [digest       :refer [sha-256]]))
 
 (def email-validation-regex
   #"(?i)[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
@@ -22,7 +22,8 @@
   (sha-256 (str salt password)))
 
 (defvalidator validate-user
-  [[:full-name]              :presence {:message "Please input your full name"}]
+  [[:first-name]            :presence {:message "Please input your first name"}]
+  [[:last-name]              :presence {:message "Please input your last name"}]
 
   [[:email]                  :presence {:message "Please input your email"}]
   [:email :validate-email-format]
@@ -33,7 +34,8 @@
   [:password :confirm-matching-password])
 
 (defentity User
-  [full-name]
+  [first-name]
+  [last-name]
   [email]
   [password :packer ->digest]
   [created-at]
