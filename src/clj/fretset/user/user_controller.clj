@@ -3,6 +3,7 @@
             [joodo.views              :refer [render-template]]
             [hyperion.api             :refer [save find-by-kind]]
             [fretset.user.user        :refer [user validate-user]]
+            [joodo.middleware.request :refer [*request*]]
             [ring.util.response       :refer [redirect]]))
 
 (defn- create-user [params]
@@ -12,10 +13,10 @@
       (assoc (redirect "/user/signup") :flash {:errors errors})
       (do
         (save user)
-        (redirect "/")))))
+        (assoc (redirect "/") :flash {:success "Your account has been created!"})))))
 
 (defn- render-form []
-  (render-template "user/signup"))
+  (render-template "user/signup" :errors (:flash *request*)))
 
 (defroutes user-controller
   (GET  "/users" [] (render-template "user/users" :users (find-by-kind :user)))

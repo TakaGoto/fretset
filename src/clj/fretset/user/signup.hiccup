@@ -1,4 +1,5 @@
 [:div.container
+  [:p (str (:errors *view-context*))]
   [:div.form-header [:h1 "Create your Account"]]
   [:div.user-registration-form
     [:form {:action "/user/signup" :method "post"}

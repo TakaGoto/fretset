@@ -33,14 +33,18 @@
         (should= "George" (:first-name new-user))
         (should-not-be-nil (:key new-user))))
 
+    (it "returns a success flash message when account has been created"
+      (let [params @valid-user
+            response (do-post "/signup" :params params)]
+        (should (:success (:flash response)))))
+
     (it "does not create an account if information is incorrect"
       (let [response (do-post "/signup" :params (dissoc @valid-user :email))
             new-user (find-by-kind :user)]
         (should= 0 (count new-user))))
 
     (it "returns with a flash error response when account information is invalid"
-      (let [response (do-post "/signup" :params (dissoc @valid-user :email))
-            new-user (find-by-kind :user)]
+      (let [response (do-post "/signup" :params (dissoc @valid-user :email))]
         (should-redirect-to response "/user/signup")
         (should (:errors (:flash response))))))
 

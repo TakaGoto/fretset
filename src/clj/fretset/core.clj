@@ -8,10 +8,13 @@
             [joodo.env                           :refer [*env* load-configurations]]
             [joodo.middleware.view-context       :refer [wrap-view-context]]
             [joodo.middleware.util               :refer [wrap-development-maybe]]
-            [joodo.middleware.request            :refer [wrap-bind-request]]
+            [joodo.middleware.request            :refer [wrap-bind-request *request*]]
             [joodo.views                         :refer [render-template]]
             [ring.adapter.jetty                  :refer [run-jetty]]
             [ring.middleware.resource            :refer [wrap-resource]]
+            [ring.middleware.params              :refer [wrap-params]]
+            [ring.middleware.flash               :refer [wrap-flash]]
+            [ring.middleware.session             :refer [wrap-session]]
             ))
 
 (defroutes app-routes
@@ -29,13 +32,16 @@
 (def app
   (->
     (handler/site app-routes)
+    wrap-bind-request
     wrap-development-maybe
-    (wrap-resource "public")
     preprocess-css
+    wrap-params
+    wrap-flash
+    wrap-session
+    (wrap-resource "public")
     (wrap-view-context :template-root "fretset"
                        :ns `fretset.util.view-helpers
-                       :layout "util/layout")
-    wrap-bind-request))
+                       :layout "util/layout")))
 
 (defn -main [& args]
   (load-configurations)
