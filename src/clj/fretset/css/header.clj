@@ -2,14 +2,12 @@
   (:require [garden.core       :refer [css]]
             [garden.stylesheet :refer [at-media]]
             [garden.units      :refer [px]]
-            [fretset.css.util  :refer [clearfix]]))
+            [fretset.css.util  :refer [clearfix black]]))
 
 (def header
   (css
 
-    [:header {:border-bottom "1px solid #DDD"
-              :background "#fff"
-              :overflow "hidden"
+    [:header {:overflow "hidden"
               :margin-bottom "3em"
               :padding "0.5em 0"}]
 
@@ -22,7 +20,7 @@
 
      [:ul {:overflow "hidden"}]
 
-     [:li {:border-top "1px solid #eee"
+     [:li {:border-top (str "1px solid " black)
            :list-style "none"
            :line-height "2em"
            :margin-bottom "0"
