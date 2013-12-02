@@ -1,12 +1,15 @@
 (ns fretset.middleware.asset-preprocess
-  (:require [garden.core        :refer [css]]
-            [fretset.css.form   :refer [form]]
+  (:require [fretset.css.form   :refer [form]]
+            [fretset.css.global :refer [global]]
             [fretset.css.header :refer [header]]
-            [fretset.css.global :refer [global]]))
+            [fretset.css.table  :refer [table]]))
+
+(def css-file-path "resources/public/stylesheets/fretset.css")
+
+(def styles (str global header form table))
 
 (def preprocess-css
   (memoize
     (fn [handler]
-      (let [css (str (global) (header) (form))]
-      (spit "resources/public/stylesheets/fretset.css" css)
-      handler))))
+      (spit css-file-path styles)
+      handler)))

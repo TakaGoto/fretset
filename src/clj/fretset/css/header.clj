@@ -4,8 +4,14 @@
             [garden.units      :refer [px]]
             [fretset.css.util  :refer [clearfix]]))
 
-(defn header []
+(def header
   (css
+
+    [:header {:border-bottom "1px solid #DDD"
+              :background "#fff"
+              :overflow "hidden"
+              :margin-bottom "3em"
+              :padding "0.5em 0"}]
 
     [:a.logo
      {:display "block"        :float "left"

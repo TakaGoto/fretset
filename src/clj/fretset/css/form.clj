@@ -2,7 +2,7 @@
   (:require [garden.core      :refer [css]]
             [fretset.css.util :refer [clearfix]]))
 
-(defn form []
+(def form
   (css
 
     [:div.form-header {:text-align "center"}]

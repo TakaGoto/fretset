@@ -8,14 +8,6 @@ a {
   color: #8c9397;
 }
 
-header {
-  overflow: hidden;
-  border-bottom: 1px solid #DDD;
-  padding: 0.5em 0;
-  background: #fff;
-  margin-bottom: 3em;
-}
-
 div.container {
   max-width: 960px;
   width: 80%;
@@ -34,7 +26,15 @@ div.container:before, div.container:after {
 
 div.container:after {
   clear: both;
-}a.logo {
+}header {
+  overflow: hidden;
+  border-bottom: 1px solid #DDD;
+  padding: 0.5em 0;
+  background: #fff;
+  margin-bottom: 3em;
+}
+
+a.logo {
   overflow: hidden;
   padding: 0.5em 0;
   float: left;
@@ -132,4 +132,18 @@ div.second-column {
   width: 45%;
   float: right;
   margin: 0;
+}table tr th {
+  text-align: left;
+  padding: 1em;
+}
+
+table tr td {
+  text-align: left;
+  padding: 1em;
+}
+
+div.user-table {
+  max-width: 500px;
+  padding: 2em;
+  margin: auto;
 }

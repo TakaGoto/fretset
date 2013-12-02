@@ -1,0 +1,9 @@
+[:div.container
+  [:div.form-header [:h1 "users"]]
+  [:div.user-table
+    [:table
+      [:tr
+        [:th "First Name"]
+        [:th "Last Name"]
+        [:th "Email"]]
+      (list-users (:users *view-context*))]]]

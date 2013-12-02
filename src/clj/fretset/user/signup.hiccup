@@ -1,7 +1,5 @@
 [:div.container
-  [:div.form-header
-    [:h1 "Create your Account"]]
-
+  [:div.form-header [:h1 "Create your Account"]]
   [:div.user-registration-form
     [:form {:action "/user/signup" :method "post"}
       [:div.form-field
@@ -20,10 +18,10 @@
 
       [:div.form-field
         [:label "Password"]
-        [:input {:type "password" :name "full-name"}]]
+        [:input {:type "password" :name "password"}]]
 
       [:div.form-field
         [:label "Password Confirmation"]
-        [:input {:type "password" :name "full-name"}]]
+        [:input {:type "password" :name "password-confirmation"}]]
 
         [:input.button {:type "submit" :value "Create Account"}]]]]

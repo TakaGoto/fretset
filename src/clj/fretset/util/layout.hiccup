@@ -7,13 +7,14 @@
 
   [:header
     [:div.container
-      [:a.logo {:href "/"}
-        "Fretset"]
+      [:a.logo {:href "/"} "Fretset"]
 
       [:nav
         [:ul
           [:li
-            [:a {:href "/user/signup"} "Sign Up"]]]]]]
+            [:a {:href "/user/signup"} "Sign Up"]]
+          [:li
+            [:a {:href "/user/users"} "Users"]]]]]]
 
   [:body
     (eval (:template-body joodo.views/*view-context*))]]

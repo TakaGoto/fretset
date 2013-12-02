@@ -41,5 +41,13 @@
     (it "returns with a flash error response when account information is invalid"
       (let [response (do-post "/signup" :params (dissoc @valid-user :email))
             new-user (find-by-kind :user)]
-        (should (:errors (:flash response)))))))
+        (should-redirect-to response "/user/signup")
+        (should (:errors (:flash response))))))
+
+  (context "list all users"
+    (it "displays all the users"
+      (let [response (do-get "/users")]
+        (should= 200 (:status response))
+        (should= "user/users" @rendered-template)
+        ))))
 
