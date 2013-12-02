@@ -1,7 +1,8 @@
 (ns fretset.user.user-controller-spec
   (:require [speclj.core                   :refer :all]
+            [fretset.user.user             :refer [user]]
             [fretset.user.user-controller  :refer :all]
-            [hyperion.api                  :refer [find-by-kind]]
+            [hyperion.api                  :refer [find-by-kind save]]
             [hyperion.dev.spec-helper      :refer [with-memory-datastore]]
             [joodo.spec-helpers.controller :refer [with-mock-rendering
                                                    with-routes do-get do-post
@@ -18,6 +19,9 @@
      :last-name "Tucker"
      :email "george@fakeemail.com"
      :password "george1" :password-confirmation "george1"})
+
+  (with credentials {"email" "george@fakeemail.com"
+                     "password" "george1"})
 
   (context "sign up"
     (it "return a 200"
@@ -52,6 +56,27 @@
     (it "displays all the users"
       (let [response (do-get "/users")]
         (should= 200 (:status response))
-        (should= "user/users" @rendered-template)
-        ))))
+        (should= "user/users" @rendered-template))))
+
+  (context "login"
+    (context "GET login"
+      (it "requests login page"
+        (let [response (do-get "/login")]
+          (should= 200 (:status response))))
+
+      (it "renders the login page"
+        (let [response (do-get "/login")]
+          (should= "user/login" @rendered-template))))
+
+    (context "POST login"
+      (it "redirects to '/'"
+        (save (user @valid-user))
+        (let [response (do-post "/login" :params @credentials)]
+          (should= 302 (:status response))
+          (should-redirect-to response "/")))
+
+      (it "redirects back to GET '/login' if login fails"
+        (save (user @valid-user))
+        (let [response (do-post "/login" :params (assoc @credentials "password" "wrongpassword"))]
+          (should-redirect-to response "login"))))))
 

@@ -14,6 +14,8 @@
             [ring.middleware.cookies             :refer [wrap-cookies]]
             [ring.middleware.resource            :refer [wrap-resource]]
             [ring.middleware.params              :refer [wrap-params]]
+            [ring.middleware.keyword-params      :refer [wrap-keyword-params]]
+            [ring.middleware.multipart-params    :refer [wrap-multipart-params]]
             [ring.middleware.flash               :refer [wrap-flash]]
             [ring.middleware.session             :refer [wrap-session]]))
 

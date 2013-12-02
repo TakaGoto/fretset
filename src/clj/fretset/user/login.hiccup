@@ -1,0 +1,13 @@
+[:div.container
+  [:div.form-header [:h1 "Login"]]
+  [:div.form
+    [:form {:action "/user/login" :method "post"}
+      [:div.form-field
+        [:label "Email"]
+        [:input {:type "text" :name "email"}]]
+
+      [:div.form-field
+        [:label "Password"]
+        [:input {:type "password" :name "password"}]]
+
+      [:input.button {:type "submit" :value "Login"}]]]]

@@ -8,7 +8,7 @@
             [joodo.spec-helpers.controller :refer [with-routes do-get do-post
                                                    should-redirect-to]]))
 
-(def mock-request {:params {:email "george@gmail.com" :password "george1"}})
+(def mock-request {:params {"email" "george@gmail.com" "password" "george1"}})
 
 (describe "user login"
   (with-memory-datastore)

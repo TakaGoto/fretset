@@ -7,7 +7,7 @@
 
     [:div.form-header {:text-align "center"}]
 
-    [:div.user-registration-form
+    [:div.form
      clearfix
      {:text-align "center" :padding "2em"
       :max-width "500px"   :margin-left "auto"

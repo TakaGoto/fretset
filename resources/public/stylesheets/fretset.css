@@ -90,7 +90,7 @@ nav li {
   text-align: center;
 }
 
-div.user-registration-form {
+div.form {
   max-width: 500px;
   text-align: center;
   margin-right: auto;
@@ -98,20 +98,20 @@ div.user-registration-form {
   padding: 2em;
 }
 
-div.user-registration-form {
+div.form {
 *zoom: 1;
 }
 
-div.user-registration-form:before, div.user-registration-form:after {
+div.form:before, div.form:after {
   content: "";
   display: table;
 }
 
-div.user-registration-form:after {
+div.form:after {
   clear: both;
 }
 
-div.user-registration-form input.button {
+div.form input.button {
   background-color: red;
   cursor: pointer;
   color: white;
