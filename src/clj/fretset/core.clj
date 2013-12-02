@@ -11,11 +11,11 @@
             [joodo.middleware.request            :refer [wrap-bind-request *request*]]
             [joodo.views                         :refer [render-template]]
             [ring.adapter.jetty                  :refer [run-jetty]]
+            [ring.middleware.cookies             :refer [wrap-cookies]]
             [ring.middleware.resource            :refer [wrap-resource]]
             [ring.middleware.params              :refer [wrap-params]]
             [ring.middleware.flash               :refer [wrap-flash]]
-            [ring.middleware.session             :refer [wrap-session]]
-            ))
+            [ring.middleware.session             :refer [wrap-session]]))
 
 (defroutes app-routes
   (GET "/" [] (render-template "util/home"))
@@ -38,6 +38,7 @@
     wrap-params
     wrap-flash
     wrap-session
+    wrap-cookies
     (wrap-resource "public")
     (wrap-view-context :template-root "fretset"
                        :ns `fretset.util.view-helpers
