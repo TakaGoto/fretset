@@ -18,6 +18,9 @@
     [:a {:text-decoration "none"
          :color blue :text-transform "uppercase"}]
 
+    [:input {:font-family "adelle"
+             :font-size "1em"}]
+
     [:div.container
      clearfix
      {:max-width "960px"   :margin "0 auto"

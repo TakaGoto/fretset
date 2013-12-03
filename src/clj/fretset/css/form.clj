@@ -1,6 +1,7 @@
 (ns fretset.css.form
-  (:require [garden.core      :refer [css]]
-            [fretset.css.util :refer [clearfix gray]]))
+  (:require [garden.core        :refer [css]]
+            [fretset.css.util   :refer [clearfix]]
+            [fretset.css.global :refer [gray]]))
 
 (def form
   (css
@@ -14,8 +15,8 @@
       :margin-right "auto"}
 
       [:input.button {:margin "1em"
-                      :background-color "red"
-                      :border "1px solid red" :color "white"
+                      :background-color "#7B1113"
+                      :border "1px solid #7B1113" :color gray
                       :padding "0.75em 2em"
                       :cursor "pointer"}]]
 
