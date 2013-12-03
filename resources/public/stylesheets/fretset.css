@@ -36,7 +36,7 @@ body {
 }
 
 header {
-  background-color: #93BDDA;
+  background-image: url('/images/bg-header.png');
 }header {
   overflow: hidden;
   padding: 0.5em 0;

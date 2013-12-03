@@ -1,7 +1,8 @@
 (ns fretset.css.global
   (:require [garden.core     :refer [css]]
-            [fretset.css.util :refer [clearfix gray black
-                                      background]]))
+            [fretset.css.util :refer [clearfix black
+                                      header-background
+                                      gray body-background]]))
 
 (def global
   (css
@@ -17,7 +18,7 @@
       :position "relative" :width "80%"}]
 
     [:body {:background-color black :color gray
-            :background-image background}]
+            :background-image body-background}]
 
-    [:header {:background-color "#93BDDA"}]))
+    [:header {:background-image header-background}]))
 
