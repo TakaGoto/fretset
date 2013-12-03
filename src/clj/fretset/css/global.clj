@@ -18,7 +18,8 @@
       :position "relative" :width "80%"}]
 
     [:body {:background-color black :color gray
-            :background-image body-background}]
+            :background-image body-background
+            :font-family "proxima-nova"}]
 
     [:header {:background-image header-background}]))
 

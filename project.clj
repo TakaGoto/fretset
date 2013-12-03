@@ -5,7 +5,6 @@
                  [compojure "1.1.6"]
                  [digest "1.4.3"]
                  [garden "1.1.4"]
-                 [hiccups "0.2.0"]
                  [hyperion/hyperion-mongo "3.6.0"]
                  [joodo "2.0.0"]
                  [metis "0.3.3"]
@@ -25,5 +24,4 @@
   :test-paths ["spec/clj"]
   :source-paths ["src/clj"]
 
-  :ring {:handler fretset.core/app}
-)
+  :ring {:handler fretset.core/app})

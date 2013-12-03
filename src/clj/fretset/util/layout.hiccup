@@ -3,7 +3,9 @@
   [:head
     [:meta {:http-equiv "Content-Type" :content "text/html" :charset "iso-8859-1"}]
     [:title "Fretset"]
-    (include-css "/stylesheets/fretset.css")]
+    (include-css "/stylesheets/fretset.css")
+    [:script {:type "text/javascript" :src "//use.typekit.net/mup4dmu.js"}]
+    [:script {:type "text/javascript"} "try{Typekit.load();}catch(e){}"]]
 
   [:header
     [:div.container

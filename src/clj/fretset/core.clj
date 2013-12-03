@@ -9,7 +9,6 @@
             [joodo.middleware.view-context       :refer [wrap-view-context]]
             [joodo.middleware.util               :refer [wrap-development-maybe]]
             [joodo.middleware.request            :refer [wrap-bind-request *request*]]
-            [joodo.middleware.keyword-cookies    :refer [wrap-keyword-cookies]]
             [joodo.views                         :refer [render-template]]
             [ring.adapter.jetty                  :refer [run-jetty]]
             [ring.middleware.cookies             :refer [wrap-cookies]]
