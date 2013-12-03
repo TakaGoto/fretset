@@ -1,6 +1,6 @@
 (ns fretset.css.flash-message
-  (:require [garden.core      :refer [css]]
-            [fretset.css.util :refer [gray]]))
+  (:require [garden.core        :refer [css]]
+            [fretset.css.global :refer [gray]]))
 
 (def flash-message
   (css

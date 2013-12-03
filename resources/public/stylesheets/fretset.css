@@ -5,7 +5,7 @@
 
 a {
   text-transform: uppercase;
-  color: #0b0f11;
+  color: #1D3846;
   text-decoration: none;
 }
 
@@ -30,13 +30,15 @@ div.container:after {
 }
 
 body {
-  font-family: proxima-nova;
+  font-family: adelle;
   background-image: url('/images/blue_dark_background.jpg');
   color: #afafaf;
   background-color: #0b0f11;
 }
 
 header {
+  font-weight: 100;
+  color: #afafaf;
   background-image: url('/images/bg-header.png');
 }header {
   overflow: hidden;
@@ -63,7 +65,7 @@ nav ul {
 nav li {
   text-align: center;
   margin-bottom: 0;
-  line-height: 2em;
+  line-height: 2.25em;
   list-style: none;
   border-top: 1px solid #0b0f11;
 }

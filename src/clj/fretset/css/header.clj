@@ -1,8 +1,9 @@
 (ns fretset.css.header
-  (:require [garden.core       :refer [css]]
-            [garden.stylesheet :refer [at-media]]
-            [garden.units      :refer [px]]
-            [fretset.css.util  :refer [clearfix black]]))
+  (:require [garden.core         :refer [css]]
+            [garden.stylesheet   :refer [at-media]]
+            [garden.units        :refer [px]]
+            [fretset.css.util    :refer [clearfix]]
+            [fretset.css.global  :refer [black]]))
 
 (def header
   (css
@@ -22,7 +23,7 @@
 
      [:li {:border-top (str "1px solid " black)
            :list-style "none"
-           :line-height "2em"
+           :line-height "2.25em"
            :margin-bottom "0"
            :text-align "center"}]]
 
