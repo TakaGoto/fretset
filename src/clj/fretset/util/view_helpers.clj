@@ -1,5 +1,6 @@
 (ns fretset.util.view-helpers
   (:require [joodo.views              :refer [render-partial *view-context*]]
+            [joodo.middleware.request :refer [*request*]]
             [hiccup.page              :refer :all]
             [hiccup.form              :refer :all]))
 
@@ -23,3 +24,10 @@
   (map
     #(display-message %)
     (flash-key flash-messages)))
+
+(defn display-logout-login [request]
+  (if (:value (get (:cookies request) "token"))
+  [:li
+   [:a {:href "/user/logout"} "Logout"]]
+  [:li
+   [:a {:href "/user/login"} "Login"]]))

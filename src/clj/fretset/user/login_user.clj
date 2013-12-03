@@ -17,8 +17,14 @@
         user (first (find-by-kind :user :filters [:= :email email]))]
     (if (valid-password? password user)
       (assoc
-        (set-cookie (redirect "/") :token (build-token user))
+        (set-cookie (redirect "/") :token (build-token user) {:path "/"})
         :flash {:success {:login ["You have logged in!"]}})
       (assoc
         (redirect "login")
         :flash {:errors {:login ["Login failed"]}}))))
+
+(defn logout [request]
+  (assoc-in request [:cookies :token]
+            {:value "expired"
+             :path "/"
+             :max-age 0}))

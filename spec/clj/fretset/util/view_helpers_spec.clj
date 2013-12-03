@@ -22,11 +22,11 @@
                    [:tr [:td "george"] [:td "heisman"] [:td "big@email.com"]])
           hiccup-html))))
 
-  (context "display flash messages"
-    (it "displays success flash message"
-      (let [flash-hiccup (display-flash {:flash {:success ["success!"]}} :success)]
-        (should= true true)
-        )
-      )
-    )
-  )
+  (context "display login or logout"
+    (it "displays login if there is no token cookie"
+      (should-contain "login"
+        (:href (second (second (display-logout-login {}))))))
+
+    (it "displays logout if there is a token cookie"
+      (should-contain "logout"
+        (:href (second (second (display-logout-login {:cookies {"token" {:value "token"}}}))))))))

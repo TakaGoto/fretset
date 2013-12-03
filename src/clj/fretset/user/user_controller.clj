@@ -3,7 +3,7 @@
             [joodo.views              :refer [render-template]]
             [hyperion.api             :refer [save find-by-kind]]
             [fretset.user.user        :refer [user validate-user]]
-            [fretset.user.login-user  :refer [login]]
+            [fretset.user.login-user  :refer [login logout]]
             [joodo.middleware.request :refer [*request*]]
             [ring.util.response       :refer [redirect]]))
 
@@ -22,8 +22,10 @@
 (defroutes user-controller
   (GET   "/users" [] (render-template "user/users" :users (find-by-kind :user)))
 
-  (GET   "/login" [] (render-template "user/login"))
+  (GET   "/login" [] (render-template "user/login" :flash (:flash *request*)))
   (POST  "/login" [] (login *request*))
+
+  (GET   "/logout" [] (logout (redirect "/")))
 
   (GET   "/signup" [] (render-signup-form))
   (POST  "/signup" {params :params}  (create-user params)))

@@ -36,4 +36,16 @@
     (it "redirects to '/' if login is successful"
       (let [george (save (user @new-user))
             response (login mock-request)]
-        (should-redirect-to response "/")))))
+        (should-redirect-to response "/"))))
+
+  (context "user logout"
+    (with response (logout {:cookies {:token {:value "token"}}}))
+
+    (it "sets expiration on token when user logs out"
+      (should= 0 (:max-age (:token (:cookies @response)))))
+
+    (it "sets the value of token to nil"
+      (should= "expired" (:value (:token (:cookies @response)))))
+
+    (it "sets the path to root"
+      (should= "/" (:path (:token (:cookies @response)))))))

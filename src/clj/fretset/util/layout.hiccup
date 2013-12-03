@@ -13,8 +13,7 @@
         [:ul
           [:li
             [:a {:href "/user/signup"} "Sign Up"]]
-          [:li
-            [:a {:href "/user/login"} "Login"]]
+          (display-logout-login *request*)
           [:li
             [:a {:href "/user/users"} "Users"]]]]]]
 

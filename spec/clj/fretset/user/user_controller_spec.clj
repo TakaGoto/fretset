@@ -68,6 +68,11 @@
         (let [response (do-get "/login")]
           (should= "user/login" @rendered-template))))
 
+    (context "GET logout"
+      (it "lets user logout and redirect to root"
+        (let [response (do-get "/logout")]
+          (should= 302 (:status response)))))
+
     (context "POST login"
       (it "redirects to '/'"
         (save (user @valid-user))

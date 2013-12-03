@@ -1,9 +1,9 @@
 [:div.container
-  [:div.form-header [:h1 "Create your Account"]
 
-  [:div.flash-message
-    [:ul
-      (display-flash (:flash *view-context*) :errors)]]]
+  [:div.form-header [:h1 "Create your Account"]
+    [:div.flash-message
+      [:ul
+        (display-flash (:flash *view-context*) :errors)]]]
 
   [:div.form
     [:form {:action "/user/signup" :method "post"}

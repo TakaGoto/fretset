@@ -19,5 +19,5 @@
     [:body {:background-color black :color gray
             :background-image background}]
 
-    [:header {:background-color gray}]))
+    [:header {:background-color "#93BDDA"}]))
 

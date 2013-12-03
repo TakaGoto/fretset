@@ -1,5 +1,11 @@
 [:div.container
-  [:div.form-header [:h1 "Login"]]
+
+  [:div.form-header [:h1 "Login"]
+    [:div.flash-message
+      [:ul
+        (prn *view-context*)
+        (display-flash (:flash *view-context*) :errors)]]]
+
   [:div.form
     [:form {:action "/user/login" :method "post"}
       [:div.form-field
