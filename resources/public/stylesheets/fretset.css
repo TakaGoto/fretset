@@ -30,6 +30,7 @@ div.container:after {
 }
 
 body {
+  background-image: url('/images/blue_dark_background.png');
   color: #afafaf;
   background-color: #0b0f11;
 }
@@ -160,4 +161,10 @@ div.user-table {
   max-width: 500px;
   padding: 2em;
   margin: auto;
+}div.flash-message {
+  color: #afafaf;
+}
+
+div.flash-message ul {
+  list-style: none;
 }

@@ -1,1 +1,4 @@
-[:div.container]
+[:div.container
+  [:div.flash-message
+    [:ul
+      (display-flash (:flash *view-context*) :success)]]]

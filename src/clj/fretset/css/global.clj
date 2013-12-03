@@ -15,7 +15,8 @@
      {:max-width "960px"   :margin "0 auto"
       :position "relative" :width "80%"}]
 
-    [:body {:background-color black :color gray}]
+    [:body {:background-color black :color gray
+            :background-image "url('/images/blue_dark_background.png')"}]
 
     [:header {:background-color gray}]))
 

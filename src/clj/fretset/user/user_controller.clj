@@ -14,19 +14,16 @@
       (assoc (redirect "/user/signup") :flash {:errors errors})
       (do
         (save user)
-        (assoc (redirect "/") :flash {:success "Your account has been created!"})))))
+        (assoc (redirect "/") :flash {:success {:account ["Your account has been created!"]}})))))
 
 (defn- render-signup-form []
-  (render-template "user/signup" :errors (:flash *request*)))
-
-(defn- authorize-login []
-  (login *request*))
+  (render-template "user/signup" :flash (:flash *request*)))
 
 (defroutes user-controller
   (GET   "/users" [] (render-template "user/users" :users (find-by-kind :user)))
 
   (GET   "/login" [] (render-template "user/login"))
-  (POST  "/login" [] (authorize-login))
+  (POST  "/login" [] (login *request*))
 
   (GET   "/signup" [] (render-signup-form))
   (POST  "/signup" {params :params}  (create-user params)))

@@ -16,7 +16,9 @@
         email (get (:params request) "email")
         user (first (find-by-kind :user :filters [:= :email email]))]
     (if (valid-password? password user)
-      (set-cookie (redirect "/") :token (build-token user))
+      (assoc
+        (set-cookie (redirect "/") :token (build-token user))
+        :flash {:success {:login ["You have logged in!"]}})
       (assoc
         (redirect "login")
-        :flash {:errors ["Login failed"]}))))
+        :flash {:errors {:login ["Login failed"]}}))))

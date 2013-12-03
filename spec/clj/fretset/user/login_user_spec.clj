@@ -10,24 +10,30 @@
 
 (def mock-request {:params {"email" "george@gmail.com" "password" "george1"}})
 
-(describe "user login"
+(describe "Login"
   (with-memory-datastore)
 
   (with new-user {:first-name "george" :last-name "tucker"
                   :email "george@gmail.com" :password"george1"
                   :password-confirmation "george1"})
 
-  (it "lets a user login"
-    (let [george (save (user @new-user))
-          response (login mock-request)]
-      (should= (build-token george) (:value (:token (:cookies response))))))
+  (context "user login"
+    (it "lets a user login"
+      (let [george (save (user @new-user))
+            response (login mock-request)]
+        (should= (build-token george) (:value (:token (:cookies response))))))
 
-  (it "rejects failed password"
-    (let [george (save (user @new-user))
-          response (login (assoc mock-request :params {:password "wrongpassword"}))]
-      (should= "Login failed" (first (:errors (:flash response))))))
+    (it "sends a message that user has logged in"
+      (let [george (save (user @new-user))
+            response (login mock-request)]
+        (should= "You have logged in!" (first (:login (:success (:flash response)))))))
 
-  (it "redirects to '/' if login is successful"
-    (let [george (save (user @new-user))
-          response (login mock-request)]
-      (should-redirect-to response "/"))))
+    (it "rejects failed password"
+      (let [george (save (user @new-user))
+            response (login (assoc mock-request :params {:password "wrongpassword"}))]
+        (should= "Login failed" (first (:login (:errors (:flash response)))))))
+
+    (it "redirects to '/' if login is successful"
+      (let [george (save (user @new-user))
+            response (login mock-request)]
+        (should-redirect-to response "/")))))
