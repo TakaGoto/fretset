@@ -5,6 +5,8 @@
 
 (def gray "#afafaf")
 
+(def background "url('/images/blue_dark_background.jpg')")
+
 (def clearfix
   ["&"
    {:*zoom 1}
