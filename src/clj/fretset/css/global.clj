@@ -1,6 +1,8 @@
 (ns fretset.css.global
-  (:require [garden.core     :refer [css]]
-            [fretset.css.util :refer [clearfix]]))
+  (:require [garden.core       :refer [css]]
+            [garden.stylesheet :refer [at-media]]
+            [garden.units      :refer [px]]
+            [fretset.css.util  :refer [clearfix]]))
 
 (def black "#0b0f11")
 (def gray "#afafaf")
@@ -30,6 +32,10 @@
             :background-image body-background
             :font-family "adelle"}]
 
-    [:header {:background-image header-background
-              :color gray :font-weight "100"}]))
+    [:header {:background-color gray
+              :color gray :font-weight "100"}]
 
+    (at-media {:screen true :min-width (px 640)}
+              [:header
+               {:background-image header-background}])
+    ))

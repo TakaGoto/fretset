@@ -44,7 +44,15 @@ body {
 header {
   font-weight: 100;
   color: #afafaf;
-  background-image: url('/images/bg-header.png');
+  background-color: #afafaf;
+}
+
+@media screen and (min-width: 640px) {
+
+  header {
+    background-image: url('/images/bg-header.png');
+  }
+
 }header {
   overflow: hidden;
   padding: 0.5em 0;
