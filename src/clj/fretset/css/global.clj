@@ -15,10 +15,12 @@
 (def global
   (css
 
+    [:html {:background-image body-background}]
+
     ["*" {:margin "0" :padding "0"}]
 
     [:a {:text-decoration "none"
-         :color blue :text-transform "uppercase"}]
+         :color gray :text-transform "uppercase"}]
 
     [:input {:font-family "adelle"
              :font-size "1em"}]
@@ -28,14 +30,11 @@
      {:max-width "960px"   :margin "0 auto"
       :position "relative" :width "80%"}]
 
-    [:body {:background-color black :color gray
-            :background-image body-background
+    [:body {:color gray
             :font-family "adelle"}]
 
-    [:header {:background-color gray
-              :color gray :font-weight "100"}]
+    [:header {:color gray }]
 
     (at-media {:screen true :min-width (px 640)}
-              [:header
-               {:background-image header-background}])
+              [:header {}])
     ))

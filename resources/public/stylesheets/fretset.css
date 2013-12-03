@@ -1,3 +1,7 @@
+html {
+  background-image: url('/images/blue_dark_background.jpg');
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,7 +9,7 @@
 
 a {
   text-transform: uppercase;
-  color: #1D3846;
+  color: #afafaf;
   text-decoration: none;
 }
 
@@ -36,21 +40,17 @@ div.container:after {
 
 body {
   font-family: adelle;
-  background-image: url('/images/blue_dark_background.jpg');
   color: #afafaf;
-  background-color: #0b0f11;
 }
 
 header {
-  font-weight: 100;
   color: #afafaf;
-  background-color: #afafaf;
 }
 
 @media screen and (min-width: 640px) {
 
   header {
-    background-image: url('/images/bg-header.png');
+  
   }
 
 }header {
