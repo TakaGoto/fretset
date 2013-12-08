@@ -31,7 +31,13 @@
     (it "rejects failed password"
       (let [george (save (user @new-user))
             response (login (assoc mock-request :params {:password "wrongpassword"}))]
-        (should= "Login failed" (first (:login (:errors (:flash response)))))))
+        (should= "*Login failed" (first (:login (:errors (:flash response)))))))
+
+    (it "sends back email address if password fails"
+      (let [george (save (user @new-user))
+            response (login (assoc mock-request :params {"password" "wrongpassword"
+                                                         "email" "george@gmail.com"}))]
+        (should= "george@gmail.com" (first (:email (:user (:flash response)))))))
 
     (it "redirects to '/' if login is successful"
       (let [george (save (user @new-user))

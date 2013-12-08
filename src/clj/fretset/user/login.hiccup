@@ -1,19 +1,20 @@
 [:div.container
 
-  [:div.form-header [:h1 "Login"]
-    [:div.flash-message
-      [:ul
-        (prn *view-context*)
-        (display-flash (:flash *view-context*) :errors)]]]
+  [:div.form-header [:h1 "Login"]]
 
   [:div.form
     [:form {:action "/user/login" :method "post"}
       [:div.form-field
         [:label "Email"]
-        [:input {:type "text" :name "email"}]]
+        [:input {:type "text" :value (first (:email (:user (:flash *view-context*)))) :name "email"}]]
 
       [:div.form-field
         [:label "Password"]
         [:input {:type "password" :name "password"}]]
 
-      [:input.button {:type "submit" :value "Login"}]]]]
+      [:div.form-footer
+        [:div.flash-message
+          [:ul
+            (display-flash (:flash *view-context*) :errors)]]
+
+        [:input.button {:type "submit" :value "Login"}]]]]]

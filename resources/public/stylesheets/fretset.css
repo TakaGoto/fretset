@@ -131,10 +131,11 @@ div.form:after {
 div.form input.button {
   cursor: pointer;
   padding: 0.75em 2em;
+  float: right;
   color: #afafaf;
   border: 1px solid #7B1113;
   background-color: #7B1113;
-  margin: 1em;
+  margin-top: 1em;
 }
 
 div.form-field label {
@@ -182,5 +183,8 @@ div.user-table {
 }
 
 div.flash-message ul {
+  color: red;
+  margin-top: 1em;
+  float: left;
   list-style: none;
 }

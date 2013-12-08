@@ -6,4 +6,5 @@
   (css
 
     [:div.flash-message {:color gray}
-      [:ul {:list-style "none"}]]))
+      [:ul {:list-style "none" :margin-top "1em"
+            :float "left" :color "red"}]]))

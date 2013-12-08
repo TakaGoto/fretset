@@ -14,9 +14,10 @@
       :max-width "500px"   :margin-left "auto"
       :margin-right "auto"}
 
-      [:input.button {:margin "1em"
+      [:input.button {:margin-top "1em"
                       :background-color "#7B1113"
                       :border "1px solid #7B1113" :color gray
+                      :float "right"
                       :padding "0.75em 2em"
                       :cursor "pointer"}]]
 

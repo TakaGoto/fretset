@@ -21,7 +21,8 @@
         :flash {:success {:login ["You have logged in!"]}})
       (assoc
         (redirect "login")
-        :flash {:errors {:login ["Login failed"]}}))))
+        :flash {:errors {:login ["*Login failed"]}
+                :user {:email [email]}}))))
 
 (defn logout [request]
   (assoc-in request [:cookies :token]
