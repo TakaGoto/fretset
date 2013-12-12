@@ -12,5 +12,6 @@
 (def preprocess-css
   (memoize
     (fn [handler]
+      (prn handler)
       (spit css-file-path styles)
       handler)))
