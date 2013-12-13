@@ -31,7 +31,7 @@
 
 (def app
   (->
-    (handler/site app-routes)
+    app-routes
     wrap-bind-request
     wrap-development-maybe
     preprocess-css
